@@ -45,7 +45,7 @@ public class BallsManager : MonoBehaviour
     private void Update()
     {
 
-        if (!GameManager.Instance.IsGameStarted) // topun platforma başlangıçta yapışması
+        if (!GameManager.Instance.IsGameStarted) 
         {
             Vector3 paddlePosition = Paddle.Instance.gameObject.transform.position;
             Vector3 ballPosition = new Vector3(paddlePosition.x, paddlePosition.y + .27f, 0);
@@ -60,7 +60,7 @@ public class BallsManager : MonoBehaviour
         }
     }
 
-    private void InitBall()
+    private void InitBall() // topun platforma başlangıçta yapışması
     {
         Vector3 paddlePosition = Paddle.Instance.gameObject.transform.position;
         Vector3 startingPosition = new Vector3(paddlePosition.x, paddlePosition.y + .27f, 0); // getting from paddle
