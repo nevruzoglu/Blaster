@@ -24,9 +24,9 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
-public bool IsGameStarted {get; set;}
+    public bool IsGameStarted { get; set; }
 
-// private void Start() {
-//     Screen.SetResolution(640,960,false);
-// }
+    // private void Start() {
+    //     Screen.SetResolution(640,960,false);
+    // }
 }

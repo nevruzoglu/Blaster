@@ -48,7 +48,7 @@ public class Paddle : MonoBehaviour
         PaddleMovement();
     }
 
-    private void PaddleMovement()
+    private void PaddleMovement() // Platform sağ sol sınırı, büyüdüğünde sınır sabit kalıyor
     {
         float paddleShift = (defaultPaddleWitdthPixels - ((defaultPaddleWitdthPixels / 2) * this.sr.size.x)) / 2;
         float leftClamp = defaultLeftClamp - paddleShift;
@@ -59,7 +59,7 @@ public class Paddle : MonoBehaviour
     }
 
 
-    private void OnCollisionEnter2D(Collision2D coll)
+    private void OnCollisionEnter2D(Collision2D coll) // topun platforma çarma yerine göre sağa sola gitmesi
     {
         if (coll.gameObject.tag == "Ball")
         {

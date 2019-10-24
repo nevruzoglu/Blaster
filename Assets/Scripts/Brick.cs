@@ -20,7 +20,7 @@ public class Brick : MonoBehaviour
         Ball ball = collision.gameObject.GetComponent<Ball>();
         ApplyCollisionLogic(ball);
     }
-    private void ApplyCollisionLogic(Ball ball)
+    private void ApplyCollisionLogic(Ball ball) // topun hedefe çarpması ile partical üretmesi ve hitpointin -1 düşmesi
     {
         this.Hitpoints--;
         if (this.Hitpoints <= 0)
@@ -35,7 +35,7 @@ public class Brick : MonoBehaviour
         }
     }
 
-    private void SpawnDestroyEffect()
+    private void SpawnDestroyEffect()  // partical çıkma pozisyonu ve sprite rengine göre oluşması
     {
         Vector3 brickPos = gameObject.transform.position;
         Vector3 spawnPosition = new Vector3(brickPos.x, brickPos.y, brickPos.z - 0.2f);

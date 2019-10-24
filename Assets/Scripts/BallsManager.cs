@@ -45,13 +45,13 @@ public class BallsManager : MonoBehaviour
     private void Update()
     {
 
-        if (!GameManager.Instance.IsGameStarted)
+        if (!GameManager.Instance.IsGameStarted) // topun platforma başlangıçta yapışması
         {
             Vector3 paddlePosition = Paddle.Instance.gameObject.transform.position;
             Vector3 ballPosition = new Vector3(paddlePosition.x, paddlePosition.y + .27f, 0);
             initialBall.transform.position = ballPosition;
 
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0)) // mouse basılınca topun hareket etmesi
             {
                 initialBallrb.isKinematic = false;
                 initialBallrb.AddForce(new Vector2(0, initialBallSpeed));
