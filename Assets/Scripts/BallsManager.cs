@@ -36,6 +36,8 @@ public class BallsManager : MonoBehaviour
     public List<Ball> Balls { get; set; }
 
 
+    //---------------------------------------------------------------------------------------------------------
+
 
     private void Start()
     {
@@ -45,7 +47,7 @@ public class BallsManager : MonoBehaviour
     private void Update()
     {
 
-        if (!GameManager.Instance.IsGameStarted) 
+        if (!GameManager.Instance.IsGameStarted)
         {
             Vector3 paddlePosition = Paddle.Instance.gameObject.transform.position;
             Vector3 ballPosition = new Vector3(paddlePosition.x, paddlePosition.y + .27f, 0);
