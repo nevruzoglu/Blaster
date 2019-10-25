@@ -500,7 +500,7 @@ MonoBehaviour:
   - {r: 1, g: 0.72676903, b: 0.2216981, a: 1}
   - {r: 1, g: 0.0990566, b: 0.37444392, a: 1}
   - {r: 0.6320754, g: 0, b: 0, a: 1}
-  CurrentLevel: 1
+  CurrentLevel: 2
 --- !u!1 &843734947
 GameObject:
   m_ObjectHideFlags: 0
