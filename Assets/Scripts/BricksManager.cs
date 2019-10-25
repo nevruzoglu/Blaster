@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -25,19 +25,61 @@ public class BricksManager : MonoBehaviour
     public Sprite[] Sprites;
 
     public List<int[,]> LevelsData { get; set; }
+     public List<Brick> RemainingBricks { get; set; }
 
     private int maxRows = 17;
     private int maxCols = 12;
 
+    private GameObject bricksContainer;
+    public int CurrentLevel;
+
+ 
+    private float initialBrickSpawnPositionX = -1.96f;
+  
+    private float initialBrickSpawnPositionY = 3.325f;
+
+    public Brick bricksPrefab;
+
+
+
+
+    // Start  ---------------------------------------------------------------------------------------------------------
+
+
     private void Start()
     {
         this.LevelsData = this.LoadLevelsData();
+        this.bricksContainer = new GameObject("BricksContainer");
+        this.RemainingBricks = new List<Brick>();
+        this.GenerateBricks();
     }
 
+    private void GenerateBricks(){
+        int[,] currentLevelData = this.LevelsData[this.CurrentLevel];
+        float currentSpawnX = initialBrickSpawnPositionX;
+        float currentSpawnY = initialBrickSpawnPositionY;
+
+        float zShift = 0;
+
+        for (int row = 0; row < this.maxRows; row++)
+        {{
+            for (int col = 0; col < this.maxCols; col++)
+            {
+                    int brickType = currentLevelData[row, col];
+                    if (brickType > 0)
+                    {
+                        Brick newBrick = Instantiate(bricksPrefab);
+                    }
+
+                }
+        }
+            
+        }
+    }
     private List<int[,]> LoadLevelsData()
     {
-        TextAsset lvlText = Resources.Load("levels") as TextAsset;
-        string[] rows = lvlText.text.Split(new string[] { Enviroment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+        TextAsset text = Resources.Load("levels") as TextAsset;
+        string[] rows = text.text.Split(new string[] { Enviroment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
 
         List<int[,]> levelsData = new List<int[,]>();
         int[,] currentLevel = new int[maxRows, maxCols]; // ekrana sığan max kutu sayısı
@@ -69,4 +111,4 @@ public class BricksManager : MonoBehaviour
         return levelsData;
     }
 
-}
+} 
