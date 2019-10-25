@@ -21,7 +21,7 @@ public class Paddle : MonoBehaviour
             _instance = this;
         }
     }
-    #endregion
+     #endregion
 
 
     private Camera mainCamera;
