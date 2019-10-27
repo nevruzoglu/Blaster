@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class BallsManager : MonoBehaviour
 {
@@ -30,7 +31,7 @@ public class BallsManager : MonoBehaviour
     private Ball ballPrefab;
 
     private Ball initialBall;
-    private Rigidbody2D initialBallrb;
+    private Rigidbody2D initialBallrb; 
     public float initialBallSpeed = 450;
 
     public List<Ball> Balls { get; set; }
@@ -62,6 +63,15 @@ public class BallsManager : MonoBehaviour
         }
     }
 
+    public void ResetBalls()
+    {
+        foreach (var ball in this.Balls.ToList())
+        {
+            Destroy(ball.gameObject);
+        }
+        InitBall();
+
+    }
     private void InitBall() // topun platforma başlangıçta yapışması
     {
         Vector3 paddlePosition = Paddle.Instance.gameObject.transform.position;
