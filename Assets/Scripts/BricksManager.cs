@@ -9,6 +9,7 @@ public class BricksManager : MonoBehaviour
 
     private static BricksManager _instance;
     public static BricksManager Instance => _instance;
+    public static event Action OnLevelLoaded;
 
     private void Awake()
     {
@@ -59,6 +60,8 @@ public class BricksManager : MonoBehaviour
         this.LevelsData = this.LoadLevelsData();
         this.bricksContainer = new GameObject("BricksContainer");
         this.GenerateBricks();
+       
+
     }
 
     public void LoadNextLevel()
@@ -125,6 +128,7 @@ public class BricksManager : MonoBehaviour
 
             }
             this.InitialBricksCount = this.RemainingBricks.Count;
+            OnLevelLoaded?.Invoke();
         }
     }
 
