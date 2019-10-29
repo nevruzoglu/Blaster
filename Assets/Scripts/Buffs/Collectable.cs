@@ -21,4 +21,5 @@ public abstract class Collectable : MonoBehaviour
         }
   }
     protected abstract void ApplyEffect();
+    
 }
