@@ -34,17 +34,8 @@ public class CollectablesManager : MonoBehaviour
 
     [Range(0,100)]
     public float DebuffChance;
-    
+
     //------------------------------------------------------------------------------------
 
-    void Start()
-    {
-        
-    }
-
-  
-    void Update()
-    {
-        
-    }
+   
 }

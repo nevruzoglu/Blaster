@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using System.Collections.Generic;
 using static UnityEngine.ParticleSystem;
 
 public class Brick : MonoBehaviour
@@ -30,6 +31,7 @@ public class Brick : MonoBehaviour
         {
             BricksManager.Instance.RemainingBricks.Remove(this);
             OnBrickDestruction?.Invoke(this);
+            OnBrickDestroyBuffSpawn();
             SpawnDestroyEffect();
             Destroy(this.gameObject);
         }
@@ -39,6 +41,44 @@ public class Brick : MonoBehaviour
         }
     }
 
+    private void OnBrickDestroyBuffSpawn()
+    {
+        float buffSpawnChance = UnityEngine.Random.Range(0, 100f);
+        float deBuffSpawnChance = UnityEngine.Random.Range(0, 100f);
+        bool alreadySpawned = false;
+
+        if (buffSpawnChance <= CollectablesManager.Instance.BuffChance)
+        {
+            alreadySpawned = true;
+            Collectable newBuff = this.SpawnCollectable(true);
+        }
+        if (deBuffSpawnChance <= CollectablesManager.Instance.DebuffChance)
+        {
+            Collectable newDebuff = this.SpawnCollectable(false);
+        }
+
+    }
+
+    private Collectable SpawnCollectable(bool isBuff)
+    {
+
+        List<Collectable> collection;
+
+        if (isBuff)
+        {
+            collection = CollectablesManager.Instance.AvailableBuffs;
+        }
+        else
+        {
+            collection = CollectablesManager.Instance.AvailableDebuffs;
+        }
+
+        int buffIndex = UnityEngine.Random.Range(0, collection.Count);
+        Collectable prefab = collection[buffIndex];
+        Collectable newCollectable = Instantiate(prefab, this.transform.position, Quaternion.identity) as Collectable;
+
+        return newCollectable;
+    }
     private void SpawnDestroyEffect()  // partical çıkma pozisyonu ve sprite rengine göre oluşması
     {
         Vector3 brickPos = gameObject.transform.position;
