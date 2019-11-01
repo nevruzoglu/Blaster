@@ -358,6 +358,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71adf1e4833874670aa37aec38cf7822, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  extendShrinkDuration: 10
+  paddleWidth: 2
+  paddleHeight: 0.28
 --- !u!60 &420408410
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -376,7 +379,7 @@ PolygonCollider2D:
     border: {x: 0.1875, y: 0, z: 0.25, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 2.2395833, y: 0.28125}
-    newSize: {x: 2, y: 0.3}
+    newSize: {x: 2, y: 0.28}
     adaptiveTilingThreshold: 0.5
     drawMode: 1
     adaptiveTiling: 0
@@ -435,7 +438,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
-  m_Size: {x: 2, y: 0.3}
+  m_Size: {x: 2, y: 0.28}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -2178,6 +2181,7 @@ GameObject:
   - component: {fileID: 6373780427013804134}
   - component: {fileID: 6373780427013804132}
   - component: {fileID: 6373780427013804135}
+  - component: {fileID: 6373780427013804122}
   m_Layer: 0
   m_Name: ExtendPaddle
   m_TagString: Untagged
@@ -2185,6 +2189,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6373780427013804122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6373780427013804121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c43656841c1b2844f8fb53fefb98f272, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NewWidth: 2.5
 --- !u!50 &6373780427013804132
 Rigidbody2D:
   serializedVersion: 4
@@ -2214,7 +2231,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6373780427013804121}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -2.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6373780426982584233}
