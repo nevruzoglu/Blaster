@@ -7,6 +7,7 @@ public class Brick : MonoBehaviour
 {
     private SpriteRenderer sr;
     public int Hitpoints = 1;
+    private BoxCollider2D boxCollider;
 
     public ParticleSystem DestroyEffect;
 
@@ -17,17 +18,46 @@ public class Brick : MonoBehaviour
     private void Awake()
     {
         this.sr = this.GetComponent<SpriteRenderer>();
+        this.boxCollider = this.GetComponent<BoxCollider2D>();
+        Ball.OnLightningBallEnable += OnLightningBallEnable;
 
     }
+
+    private void OnLightningBallEnable(Ball obj)
+    {
+        if (this != null)
+        {
+            this.boxCollider.isTrigger = true;
+        }
+    }
+
+    private void OnLightningBallDisable(Ball obj)
+    {
+        if (this != null)
+        {
+            this.boxCollider.isTrigger = false;
+        }
+    }
+
     void OnCollisionEnter2D(Collision2D collision)
     {
         Ball ball = collision.gameObject.GetComponent<Ball>();
         ApplyCollisionLogic(ball);
     }
+
+    private void onTriggerEnter2D(Collision2D collision)
+    {
+        Ball ball = collision.gameObject.GetComponent<Ball>();
+        ApplyCollisionLogic(ball);
+    }
+
+
+
+
     private void ApplyCollisionLogic(Ball ball) // topun hedefe çarpması ile partical üretmesi ve hitpointin -1 düşmesi
     {
         this.Hitpoints--;
-        if (this.Hitpoints <= 0)
+        if (this.Hitpoints <= 0 || (ball != null && ball.isLightningBall))
         {
             BricksManager.Instance.RemainingBricks.Remove(this);
             OnBrickDestruction?.Invoke(this);
@@ -96,5 +126,10 @@ public class Brick : MonoBehaviour
         this.sr.sprite = sprite;
         this.sr.color = color;
         this.Hitpoints = hitpoints;
+    }
+    private void OnDisable()
+    {
+        Ball.OnLightningBallEnable -= OnLightningBallEnable;
+        Ball.OnLightningBallDisable -= OnLightningBallDisable;
     }
 }

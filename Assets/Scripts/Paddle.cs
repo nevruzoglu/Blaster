@@ -70,7 +70,7 @@ public class Paddle : MonoBehaviour
                 boxCollider.size = new Vector2(currentWidth, paddleHeight);
                 yield return null;
             }
-            Debug.Log(width);
+
         }
         else
         {
