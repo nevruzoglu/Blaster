@@ -32,7 +32,7 @@ public class Ball : MonoBehaviour
         Destroy(gameObject, 1);
     }
 
-    internal void StartLightningBall()
+    public void StartLightningBall()
     {
         if (!this.isLightningBall)
         {

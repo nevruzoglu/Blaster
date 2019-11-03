@@ -20,7 +20,7 @@ public class Brick : MonoBehaviour
         this.sr = this.GetComponent<SpriteRenderer>();
         this.boxCollider = this.GetComponent<BoxCollider2D>();
         Ball.OnLightningBallEnable += OnLightningBallEnable;
-        Ball.OnLightningBallDisable -= OnLightningBallDisable;
+        Ball.OnLightningBallDisable += OnLightningBallDisable;
 
     }
 
@@ -42,18 +42,49 @@ public class Brick : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Ball ball = collision.gameObject.GetComponent<Ball>();
-        ApplyCollisionLogic(ball);
+        bool instantKill = false;
+        if (collision.collider.tag == "Ball")
+        {
+            Ball ball = collision.gameObject.GetComponent<Ball>();
+            instantKill = ball.isLightningBall;
+        }
+        if (collision.collider.tag == "Ball" || collision.collider.tag == "Projectile")
+        {
+            this.TakeDamage(instantKill);
+        }
     }
 
     private void onTriggerEnter2D(Collider2D collision)
     {
-        Ball ball = collision.gameObject.GetComponent<Ball>();
-        ApplyCollisionLogic(ball);
+        bool instantKill = false;
+        if (collision.tag == "Ball")
+        {
+            Ball ball = collision.gameObject.GetComponent<Ball>();
+            instantKill = ball.isLightningBall;
+        }
+        if (collision.tag == "Ball" || collision.tag == "Projectile")
+        {
+            this.TakeDamage(instantKill);
+        }
     }
 
+    private void TakeDamage(bool instantKill)
+    {
+        this.Hitpoints--;
 
-
+        if (this.Hitpoints <= 0 || instantKill)
+        {
+            BricksManager.Instance.RemainingBricks.Remove(this);
+            OnBrickDestruction?.Invoke(this);
+            OnBrickDestroyBuffSpawn();
+            SpawnDestroyEffect();
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            this.sr.sprite = BricksManager.Instance.Sprites[this.Hitpoints - 1];
+        }
+    }
 
     private void ApplyCollisionLogic(Ball ball) // topun hedefe çarpması ile partical üretmesi ve hitpointin -1 düşmesi
     {
