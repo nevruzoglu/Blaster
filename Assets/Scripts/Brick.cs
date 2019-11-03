@@ -20,6 +20,7 @@ public class Brick : MonoBehaviour
         this.sr = this.GetComponent<SpriteRenderer>();
         this.boxCollider = this.GetComponent<BoxCollider2D>();
         Ball.OnLightningBallEnable += OnLightningBallEnable;
+        Ball.OnLightningBallDisable -= OnLightningBallDisable;
 
     }
 
@@ -39,13 +40,13 @@ public class Brick : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         Ball ball = collision.gameObject.GetComponent<Ball>();
         ApplyCollisionLogic(ball);
     }
 
-    private void onTriggerEnter2D(Collision2D collision)
+    private void onTriggerEnter2D(Collider2D collision)
     {
         Ball ball = collision.gameObject.GetComponent<Ball>();
         ApplyCollisionLogic(ball);

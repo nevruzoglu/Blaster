@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4125236100241665563}
   - component: {fileID: 4125236100241665561}
-  - component: {fileID: 4125236100241665562}
   - component: {fileID: 4125236100241665575}
+  - component: {fileID: 1008421781}
   m_Layer: 0
   m_Name: LightningBall
   m_TagString: Untagged
@@ -55,22 +55,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &4125236100241665562
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4125236100241665572}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.028310273, y: 0.044038296}
-  serializedVersion: 2
-  m_Radius: 0.14535171
 --- !u!114 &4125236100241665575
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83,6 +67,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea7e905b22f9c1348b32411dcf9ceb03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!61 &1008421781
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4125236100241665572}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.025538757, y: 0.03820488}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.2454913, y: 0.24304622}
+  m_EdgeRadius: 0
 --- !u!1 &4125236100339405269
 GameObject:
   m_ObjectHideFlags: 0
