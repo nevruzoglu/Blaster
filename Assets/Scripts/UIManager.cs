@@ -54,5 +54,6 @@ public class UIManager : MonoBehaviour
     {
         Brick.OnBrickDestruction -= OnBrickDestruction;
         BricksManager.OnLevelLoaded -= OnLevelLoaded;
+        GameManager.OnLiveLost -= OnLiveLost;
     }
 }

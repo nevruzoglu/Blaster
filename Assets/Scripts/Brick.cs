@@ -86,22 +86,7 @@ public class Brick : MonoBehaviour
         }
     }
 
-    private void ApplyCollisionLogic(Ball ball) // topun hedefe çarpması ile partical üretmesi ve hitpointin -1 düşmesi
-    {
-        this.Hitpoints--;
-        if (this.Hitpoints <= 0 || (ball != null && ball.isLightningBall))
-        {
-            BricksManager.Instance.RemainingBricks.Remove(this);
-            OnBrickDestruction?.Invoke(this);
-            OnBrickDestroyBuffSpawn();
-            SpawnDestroyEffect();
-            Destroy(this.gameObject);
-        }
-        else
-        {
-            this.sr.sprite = BricksManager.Instance.Sprites[this.Hitpoints - 1];
-        }
-    }
+
 
     private void OnBrickDestroyBuffSpawn()
     {
@@ -114,7 +99,7 @@ public class Brick : MonoBehaviour
             alreadySpawned = true;
             Collectable newBuff = this.SpawnCollectable(true);
         }
-        if (deBuffSpawnChance <= CollectablesManager.Instance.DebuffChance)
+        if (deBuffSpawnChance <= CollectablesManager.Instance.DebuffChance && !alreadySpawned)
         {
             Collectable newDebuff = this.SpawnCollectable(false);
         }
