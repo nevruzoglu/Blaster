@@ -54,14 +54,16 @@ public class Brick : MonoBehaviour
         }
     }
 
-    private void onTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         bool instantKill = false;
+
         if (collision.tag == "Ball")
         {
             Ball ball = collision.gameObject.GetComponent<Ball>();
             instantKill = ball.isLightningBall;
         }
+
         if (collision.tag == "Ball" || collision.tag == "Projectile")
         {
             this.TakeDamage(instantKill);
